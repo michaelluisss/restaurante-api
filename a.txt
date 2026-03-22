@@ -1,0 +1,6 @@
+funcionario_id → INTEGER, allowNull: false
+saldo_inicial → DECIMAL, allowNull: false
+saldo_final → DECIMAL, allowNull: true
+data_abertura → DataTypes.DATE, defaultValue: DataTypes.NOW, allowNull: false
+data_fechamento → DataTypes.DATE, allowNull: true
+status → DataTypes.ENUM('aberto', 'fechado'), allowNull: false
