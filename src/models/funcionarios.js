@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     cargo: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+      type: DataTypes.ENUM('garcom','caixa','gerencia'),
+      allowNull: false
     },
     salario: {
       type: DataTypes.DECIMAL,
@@ -22,6 +22,13 @@ module.exports = function(sequelize, DataTypes) {
     idade: {
       type: DataTypes.DECIMAL,
       allowNull: false
+    },
+    senha: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      validate: {
+        len: [6,100]
+      }
     }
   }, {
     sequelize,
