@@ -20,7 +20,7 @@ routes.post('/login', FuncionariosControllers.login);
 routes.post('/funcionarios', verificarToken, FuncionariosControllers.store);
 routes.get('/funcionarios',verificarToken, FuncionariosControllers.index);
 routes.get('/funcionarios/:id', verificarToken, FuncionariosControllers.show);
-routes.put('/funcionarios/:id', verificarToken, FuncionariosControllers.update);
+routes.put('/funcionarios/:id',verificarToken , FuncionariosControllers.update);
 routes.delete('/funcionarios/:id', verificarToken, FuncionariosControllers.destroy);
 
 // Controle de Clientes

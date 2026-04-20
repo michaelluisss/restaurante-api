@@ -56,8 +56,10 @@ class FuncionariosControllers{
    try { 
       const {id} = req.params;
       const {nome,cargo,salario,senha,idade} = req.body;
+        const senhaPassword = await bcrypt.hash(senha, 10);
+
       await funcionarios.update(
-          {nome,cargo,salario,senha,idade},
+          {nome,cargo,salario,senha:senhaPassword,idade},
           {where:{
               id:id
           }}
