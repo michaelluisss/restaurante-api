@@ -1,14 +1,15 @@
 <div align="center">
 
-# 🍽️ Restaurante Front
+# 🍽️ Restaurante API
 
-**Interface web para sistema de gestão de restaurante**
+**API RESTful completa para gestão de restaurante**
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-
-> 🚧 Em desenvolvimento
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 
 </div>
 
@@ -16,28 +17,24 @@
 
 ## 📋 Sobre o Projeto
 
-Frontend do sistema de gestão para restaurante. Interface para garçons gerenciarem mesas, cardápio e pedidos com autenticação por cargo.
+Sistema de gestão para restaurante com controle de mesas, cardápio, pedidos, caixa e pagamentos. Desenvolvido como projeto real para um restaurante, com autenticação JWT por cargo de funcionário.
 
 ---
 
-## 🖥️ Telas
+## 🗄️ Diagrama do Banco de Dados
 
-| Tela | Descrição |
-|------|-----------|
-| Login | Autenticação por ID e senha |
-| Mesas | Visualização do status das mesas |
-| Cardápio | Listagem de itens por categoria |
-| Pedidos | Gerenciamento dos itens do pedido |
-| Pagamentos | Seleção da forma de pagamento |
+![Diagrama](./diagramaModels.png)
 
 ---
 
 ## 🚀 Tecnologias
 
-- **React** — biblioteca de interface
-- **Vite** — build tool
-- **React Router DOM** — navegação entre telas
-- **Axios** — requisições HTTP
+- **Node.js** + **Express** — servidor e rotas
+- **Sequelize ORM** — mapeamento objeto-relacional
+- **PostgreSQL** — banco de dados relacional
+- **Supabase** — banco de dados na nuvem
+- **JWT** — autenticação por token
+- **Bcryptjs** — criptografia de senhas
 
 ---
 
@@ -45,40 +42,120 @@ Frontend do sistema de gestão para restaurante. Interface para garçons gerenci
 
 ```
 src/
-├── pages/           # Telas da aplicação
-│   ├── App.jsx      # Login
-│   ├── mesas.jsx    # Seleção de mesas
-│   ├── cardapio.jsx # Cardápio
-│   └── pedidos.jsx  # Pedidos
-├── App.css
-└── main.jsx         # Rotas
+├── controllers/     # Lógica de negócio
+├── middlewares/     # Autenticação JWT
+├── models/          # Modelos Sequelize
+├── app.js           # Configuração Express
+├── routes.js        # Rotas da API
+└── server.js        # Inicialização
 ```
+
+---
+
+## 🗺️ Rotas da API
+
+### 🔐 Autenticação
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/login` | Login do funcionário |
+
+### 👨‍🍳 Funcionários
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/funcionarios` | Cadastrar funcionário |
+| GET | `/funcionarios` | Listar funcionários |
+| GET | `/funcionarios/:id` | Buscar funcionário |
+| PUT | `/funcionarios/:id` | Atualizar funcionário |
+| DELETE | `/funcionarios/:id` | Remover funcionário |
+
+### 🪑 Mesas
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/mesas` | Cadastrar mesa |
+| GET | `/mesas` | Listar mesas |
+| GET | `/mesas/:id` | Buscar mesa |
+| PATCH | `/mesas/:id/status` | Atualizar status |
+| DELETE | `/mesas/:id` | Remover mesa |
+
+### 🍕 Cardápio
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/cardapio` | Adicionar item |
+| GET | `/cardapio` | Listar cardápio |
+| GET | `/cardapio/:id` | Buscar item |
+| PUT | `/cardapio/:id` | Atualizar item |
+| DELETE | `/cardapio/:id` | Remover item |
+
+### 📋 Pedidos
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/pedidos` | Abrir pedido |
+| GET | `/pedidos` | Listar pedidos |
+| GET | `/pedidos/:id` | Buscar pedido |
+| PATCH | `/pedidos/:id/status` | Atualizar status |
+| POST | `/pedidos/:id/itens` | Adicionar item |
+| GET | `/pedidos/:id/itens` | Listar itens |
+| PATCH | `/pedidos/:id/itens/:itemId` | Atualizar item |
+| DELETE | `/pedidos/:id/itens/:itemId` | Remover item |
+
+### 💰 Caixa
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/caixa/abrir` | Abrir caixa |
+| GET | `/caixa` | Listar caixas |
+| GET | `/caixa/:id` | Buscar caixa |
+| PATCH | `/caixa/:id/fechar` | Fechar caixa |
+
+### 💳 Pagamentos
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/pagamentos` | Registrar pagamento |
+| GET | `/pagamentos` | Listar pagamentos |
+| GET | `/pagamentos/:id` | Buscar pagamento |
 
 ---
 
 ## ⚙️ Como Rodar Localmente
 
-**Pré-requisito:** [restaurante-api](https://github.com/michaelluisss/restaurante-api) rodando localmente
+**Pré-requisitos:** Node.js v20+, conta no Supabase
 
 ```bash
 # Clone o repositório
-git clone https://github.com/michaelluisss/restaurante-front.git
-cd restaurante-front
+git clone https://github.com/michaelluisss/restaurante-api.git
+cd restaurante-api
 
 # Instale as dependências
 npm install
 
-# Inicie o servidor de desenvolvimento
+# Configure o .env
+cp .env.example .env
+# Preencha com suas credenciais do Supabase
+
+# Inicie o servidor
 npm run dev
 ```
 
-Acesse em: `http://localhost:5173`
+### Variáveis de Ambiente
+
+```env
+DB_HOST=seu_host_supabase
+DB_USER=seu_usuario
+DB_PASS=sua_senha
+DB_NAME=postgres
+JWT_SECRET=sua_chave_secreta
+```
 
 ---
 
-## 🔗 Repositório da API
+## 🔒 Autenticação
 
-[michaelluisss/restaurante-api](https://github.com/michaelluisss/restaurante-api)
+Todas as rotas (exceto `/login`) exigem token JWT no header:
+
+```
+Authorization: Bearer seu_token_aqui
+```
+
+Os cargos disponíveis são: `garcom`, `caixa` e `gerencia`.
 
 ---
 
