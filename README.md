@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🍽️ Restaurante API
+<img src="https://raw.githubusercontent.com/michaelluisss/restaurante-api/master/logo.png" width="80" alt="Logo"/>
+
+# Restaurante API
 
 **API RESTful completa para gestão de restaurante**
 
