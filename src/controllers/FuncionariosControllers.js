@@ -93,12 +93,12 @@ class FuncionariosControllers{
 
     const funcionario = await funcionarios.findByPk(id);
     if (!funcionario) {
-      return res.status(404).json({ message: "Funcionário não encontrado!" });
+      return res.status(401).json({ message: "ID ou senha incorretos!" });    
     }
 
     const senhaCorreta = await bcrypt.compare(senha, funcionario.senha);
     if (!senhaCorreta) {
-      return res.status(401).json({ message: "Senha incorreta!" });
+      return res.status(401).json({ message: "ID ou senha incorretos!" });  
     }
 
     const token = jwt.sign(
