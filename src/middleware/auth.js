@@ -9,10 +9,10 @@ const verificarToken = (req, res, next) => {
     const tokenLimpo = token.replace("Bearer ", "");
     const decoded = jwt.verify(tokenLimpo, process.env.JWT_SECRET);
     req.funcionario = decoded;
-    
+    next();
   } catch (error) {
     return res.status(403).json({ message: "Token inválido!" });
   }
-  next();
+  
 }
 module.exports = verificarToken;
